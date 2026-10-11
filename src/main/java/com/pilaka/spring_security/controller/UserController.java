@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,20 +18,23 @@ public class UserController {
 
     @Autowired
     private final CustomerRepository customerRepository;
-    @Autowired
-    private final PasswordEncoder passwordEncoder;
 
-    public UserController(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
+
+
+//    @Autowired
+//    private final PasswordEncoder passwordEncoder;
+
+    public UserController(CustomerRepository customerRepository ) {
         this.customerRepository = customerRepository;
-        this.passwordEncoder = passwordEncoder;
+
     }
 @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody Customer customer){
 
           System.out.println("Registering user");
         try {
-            String hashPwd = passwordEncoder.encode(customer.getPwd());
-            customer.setPwd(hashPwd);
+//            String hashPwd = passwordEncoder.encode(customer.getPwd());
+//            customer.setPwd(hashPwd);
             Customer savedCustomer = customerRepository.save(customer);
             if (savedCustomer.getId() > 0) {
                 return ResponseEntity.status(HttpStatus.CREATED)

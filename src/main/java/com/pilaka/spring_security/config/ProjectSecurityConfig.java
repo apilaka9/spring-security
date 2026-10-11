@@ -1,4 +1,13 @@
+
 package com.pilaka.spring_security.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+//
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +29,7 @@ public class ProjectSecurityConfig {
             throws Exception {
 
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards")
                         .authenticated()
@@ -28,22 +38,33 @@ public class ProjectSecurityConfig {
                         .anyRequest()
                         .authenticated()
                 )
-                .formLogin(flc->flc.disable())
+             //   .formLogin(flc->flc.disable())
 
                 .httpBasic(withDefaults());
 
 
         return http.build();
     }
-
+//
     @Bean
     public UserDetailsService userDetailService(){
         UserDetails user = User.withUsername(("user")).password("{noop}user").authorities("read").build();
         UserDetails admin = User.withUsername(("admin")).password( "{noop}admin").authorities("update").build();
         return new InMemoryUserDetailsManager(user,admin);
     }
-   @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//   @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    public static void main(String[] args) {
+//
+//            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//
+//            String encodedPassword = encoder.encode("MyPassword@123");
+//
+//            System.out.println(" New Password is " +encodedPassword);
+//
+//
+//    }
 }
