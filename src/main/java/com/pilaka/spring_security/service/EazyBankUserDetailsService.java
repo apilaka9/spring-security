@@ -13,16 +13,11 @@
 //import java.util.List;
 //
 //public class EazyBankUserDetailsService implements UserDetailsService {
-//
 //    private CustomerRepository customerRepository;
-//
-//
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        Customer customer = customerRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("User not found "+username));
 //             List<GrantedAuthority> authorities= List.of(new SimpleGrantedAuthority(customer.getRole()));
-//
-//
 //        return new User(customer.getEmail(), customer.getPwd(), authorities);
 //    }
 //}

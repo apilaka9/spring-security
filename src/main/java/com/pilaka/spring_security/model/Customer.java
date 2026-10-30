@@ -1,66 +1,59 @@
 package com.pilaka.spring_security.model;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
+import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
-
-@Entity
-@Table(name = "customer")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
-
+@Table("customer")
 public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "email", length = 55, nullable = false)
+
+    @PrimaryKey
+    private UUID id;
+
+    private String name;
     private String email;
-    @Column(name = "pwd", length = 200, nullable = false)
-    private String pwd;
-    @Column(name = "role", length = 45, nullable = false)
-    private String role;
-    public Customer(String email, String pwd, String role) {
-        this.email = email;
-        this.pwd = pwd;
-        this.role = role;
+    private String city;
+
+    public Customer() {
     }
 
-    public Integer getId() {
+    public Customer(UUID id, String name, String email, String city) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.city = city;
+    }
+
+    public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPwd() {
-        return pwd;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public String getCity() {
+        return city;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setCity(String city) {
+        this.city = city;
     }
 }
+

@@ -1,12 +1,12 @@
 package com.pilaka.spring_security.model;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.UUID;
 
-@Repository
-public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+import org.springframework.data.cassandra.repository.CassandraRepository;
 
-    Optional<Customer> findByEmail(String username);
+
+
+public interface CustomerRepository
+        extends CassandraRepository<Customer, UUID> {
 }
