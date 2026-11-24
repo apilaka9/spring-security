@@ -28,10 +28,10 @@ public class EmployeeController {
     public ResponseEntity<String> registerUser(@RequestBody Employee employee){
           System.out.println("creating Employee Record");
             Employee savedEmployee = employeeRepository.save(employee);
-            if (savedEmployee.getEmp_id() > 0) {
-                return ResponseEntity.status(HttpStatus.CREATED)
-                        .body("record saved ");
-            }
+//            if (savedEmployee.getEmp_id() > 0) {
+               // return ResponseEntity.status(HttpStatus.CREATED)
+                      //  .body("record saved ");
+           // }
         return  ResponseEntity.status(HttpStatus.CREATED).body("saved");
     }
     @GetMapping("/list")

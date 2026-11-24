@@ -9,14 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
-
-
-
     @Autowired
     private final CustomerService service;
 
@@ -51,9 +46,5 @@ public class CustomerController {
         service.deleteCustomer(id);
     }
 
-    // ToDO
-//    @GetMapping("/list")
-//    public Customer list() {
-//        return service.listCustomers;
-//    }
+
 }
